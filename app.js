@@ -25,6 +25,8 @@ const redisStore   = require('connect-redis')(session);
 const app    = express();
 const server = http.createServer(app);
 
+const MySQLStore = require('express-mysql-session')(session);
+
 // view engine setup
 app.set('views', path.join(__dirname, '.viewsMin/pages'));
 app.set('view engine', 'ejs');
@@ -38,14 +40,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+var options = {
+	host: settings.session.db.host,
+	port: settings.session.db.port,
+	user: settings.session.db.username,
+	password: settings.session.db.password,
+	database: settings.session.db.database
+};
+
+var sessionStore = new MySQLStore(options);
+
 // Session store
 app.use(cookieParser('keyboard cat'));
 app.use(session({
   key: settings.session.key,
-  store: new redisStore(),
+  store: sessionStore,
   secret: settings.session.secret,
   cookie: {
-    path: '/'
+    path: '/',
+    httpOnly: false,
+    secure: false
   },
   resave: false,
   saveUninitialized: false
