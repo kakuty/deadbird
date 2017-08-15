@@ -6,7 +6,7 @@
     "rate": 100,
     "timeout": 1500,
     "maxSockets": 150,
-    "retrieversEnabled": true,
+    "retrieversEnabled": false,
     "checkerDaysBack": 28,
     "fetcherRestInterval": 0,
     "refetcherRestInterval": 300,
@@ -27,7 +27,14 @@
   },
   "session": {
     "key": "Deadbird",
-    "secret": "SUPERSEKRETMESSAGE123"
+    "secret": "SUPERSEKRETMESSAGE123",
+    "db": {
+      "host": "localhost",
+      "port": 3306,
+      "username": "deadbird",
+      "password": "deadbird",
+      "database": "sesstion_deadbird"
+    }
   },
   "cache": {
     "index": 10
