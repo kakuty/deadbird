@@ -5,9 +5,10 @@ Save deleted tweets of Twitter users.
 1. Create a MySQL user with read/write permissions and update `settings.json` with your db login information (Assuming your user, pass, and db is `deadbird` from here on)
 2. Create a new database called `deadbird`.
 3. Import `deadbird.sql` into your new db by running this from the command line `mysql -u deadbird -pdeadbird -D deadbird < deadbird.sql`.
-4. Run `npm install` to fetch Deadbird's dependencies.
-5. Run `gulp` to minify ejs templates and transpile js.
-6. (optional) If your fetchers keeps timing out even with low values, you might want to adjust your `ulimit nofile` settings. You can read more about how to set this up (for Ubuntu at least) [here](http://posidev.com/blog/2009/06/04/set-ulimit-parameters-on-ubuntu/). 
+4. To store session, create new MySQL database (in this case) called for example `sesstion_deadbird`, grant read/write permissions to the user created in step 1 and then update `settings.json`
+5. Run `npm install` to fetch Deadbird's dependencies.
+6. Run `gulp` to minify ejs templates and transpile js.
+7. (optional) If your fetchers keeps timing out even with low values, you might want to adjust your `ulimit nofile` settings. You can read more about how to set this up (for Ubuntu at least) [here](http://posidev.com/blog/2009/06/04/set-ulimit-parameters-on-ubuntu/). 
 
 ### Running
 Start up the Deadbird server by running `npm start`. This'll start the web server on port 3000 and the socket.io server on port 8080. All of the fetchers will be running in the background at the intervals specified in `settings.json`.
